@@ -12,11 +12,14 @@ public:
 
    /// @brief Increase signal to neuron
    /// @param[in] _signal - value of incoming signal
-   void addSignal(double _signal) noexcept;
+   void addSignal(const double _signal) noexcept;
 
    /// @brief get value that must be sended to other neurons
    /// @return double as a result
    double getResult() const noexcept;
+
+   /// @brief set signal to zero
+   void nullify() noexcept;
 
 private:
    /// @brief normalize sygnal
