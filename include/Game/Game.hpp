@@ -6,6 +6,12 @@
 class Game
 {
 public:
+   /// @brief default constructor and destructor
+   /// @{
+   Game() = default;
+   ~Game() = default;
+   /// @}
+
    /// @brief Play a tic-tac-toe between neuron webs
    /// @param[in] first - first player
    /// @param[in] second - second player
