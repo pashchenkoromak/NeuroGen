@@ -33,6 +33,12 @@ public:
    /// @return child NeuroWeb.
    NeuroWeb generate(const NeuroWeb &otherParent);
 
+   /// @brief operators for input and output
+   /// @{
+   friend std::ostream &operator<<(std::ostream &os, const NeuroWeb &neuroWeb);
+   friend std::istream &operator>>(std::istream &is, NeuroWeb &neuroWeb);
+   /// @}
+
 private:
    /// @enum Mutations
    /// @brief list of possible mutations

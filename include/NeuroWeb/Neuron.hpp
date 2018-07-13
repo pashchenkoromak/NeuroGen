@@ -1,3 +1,5 @@
+#include <fstream>
+
 /// @class Neuron
 /// @brief Is a basic unit of neuron web, it can receive sygnals and
 /// calculate new signal.
@@ -20,6 +22,12 @@ public:
 
    /// @brief set signal to zero
    void nullify() noexcept;
+
+   /// @brief operators for input and output
+   /// @{
+   friend std::ostream &operator<<(std::ostream &os, const Neuron &neuroWeb);
+   friend std::istream &operator>>(std::istream &is, Neuron &neuroWeb);
+   /// @}
 
 private:
    /// @brief normalize sygnal
