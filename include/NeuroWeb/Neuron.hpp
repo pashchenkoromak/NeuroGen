@@ -6,7 +6,7 @@
 class Neuron
 {
 public:
-   /// @brief default constructor and destructor
+   /// @brief Default constructor and destructor
    /// @{
    Neuron() = default;
    ~Neuron() = default;
@@ -16,24 +16,24 @@ public:
    /// @param[in] _signal - value of incoming signal
    void addSignal(const double _signal) noexcept;
 
-   /// @brief get value that must be sended to other neurons
+   /// @brief Get value that must be sended to other neurons
    /// @return double as a result
    double getResult() const noexcept;
 
-   /// @brief set signal to zero
+   /// @brief Set signal to zero
    void nullify() noexcept;
 
-   /// @brief operators for input and output
+   /// @brief Operators for input and output
    /// @{
    friend std::ostream &operator<<(std::ostream &os, const Neuron &neuroWeb);
    friend std::istream &operator>>(std::istream &is, Neuron &neuroWeb);
    /// @}
 
 private:
-   /// @brief normalize sygnal
-   /// @return value [0, 1].
+   /// @brief Normalize sygnal
+   /// @return Value [0, 1].
    double activation() const noexcept;
 
-   /// @brief sum of received signals
+   /// @brief Sum of received signals
    double m_signal;
 };

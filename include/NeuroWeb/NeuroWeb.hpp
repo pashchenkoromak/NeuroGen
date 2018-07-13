@@ -9,31 +9,31 @@
 class NeuroWeb
 {
 public:
-   /// @brief contructor and destructor
+   /// @brief Contructor and destructor
    /// @{
    NeuroWeb() = default;
    ~NeuroWeb() = default;
    /// @}
 
-   /// @brief studies, using input file.
+   /// @brief Studies, using input file.
    /// @param[in] inputFile - file with information for studying.
    /// @param[in] maxEpoch - study iterations count.
    void study(std::ifstream &inputFile, const int maxEpoch = 1000) noexcept;
 
-   /// @brief get the best turn (due to neuron web) using current
+   /// @brief Get the best turn (due to neuron web) using current
    /// state of field.
    int getNextTurn(const std::vector<std::vector<int>> &field) noexcept;
 
-   /// @brief creates a copy of this web with some small change.
-   /// @return mutant NeuroWeb
+   /// @brief Creates a copy of this web with some small change.
+   /// @return Mutant NeuroWeb
    NeuroWeb mutate();
 
-   /// @brief creates a child of two webs, it contain some parts
+   /// @brief Creates a child of two webs, it contain some parts
    /// of both parents.
-   /// @return child NeuroWeb.
+   /// @return Child NeuroWeb.
    NeuroWeb generate(const NeuroWeb &otherParent);
 
-   /// @brief operators for input and output
+   /// @brief Operators for input and output
    /// @{
    friend std::ostream &operator<<(std::ostream &os, const NeuroWeb &neuroWeb);
    friend std::istream &operator>>(std::istream &is, NeuroWeb &neuroWeb);
@@ -41,7 +41,7 @@ public:
 
 private:
    /// @enum Mutations
-   /// @brief list of possible mutations
+   /// @brief List of possible mutations
    enum Mutations
    {
       AddNeuron,
@@ -50,16 +50,16 @@ private:
       DecreaseSynapse,
    };
 
-   /// @brief child have some mutation probability
+   /// @brief Child have some mutation probability
    const static double mutationProbability = 0.1;
 
-   /// @brief sends signal by neuron with number = id to all neurons connected him.
+   /// @brief Sends signal by neuron with number = id to all neurons connected him.
    /// @param[in] id - neuron-sender number.
    void sendSygnal(const int id) noexcept;
 
-   /// @brief vector of neurons.
+   /// @brief Vector of neurons.
    std::vector<Neuron> m_neurons;
 
-   /// @brief neuron graph.
+   /// @brief Neuron graph.
    std::vector<std::vector<double>> m_web;
 };
