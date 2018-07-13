@@ -16,21 +16,23 @@ add_executable(${PROJECT_NAME} "main.cpp")
 target_link_libraries(${PROJECT_NAME} NeuroWeb Game Genetic)
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 
-find_package(Doxygen)
+if (enable_documentation)
+    find_package(Doxygen)
 
-if(Doxygen_FOUND)
-    set(TARGET_NAME doc_${PROJECT_NAME})
-    set(DOXYGEN_GENERATE_MAN YES)
+    if(Doxygen_FOUND)
+        set(TARGET_NAME doc_${PROJECT_NAME})
+        set(DOXYGEN_GENERATE_MAN YES)
 
-    set(DOXYGEN_IN ${CMAKE_SOURCE_DIR}/doc/Doxyfile.in)
-    set(DOXYGEN_OUT ${CMAKE_BINARY_DIR}/Doxyfile)
+        set(DOXYGEN_IN ${CMAKE_SOURCE_DIR}/doc/Doxyfile.in)
+        set(DOXYGEN_OUT ${CMAKE_BINARY_DIR}/Doxyfile)
 
-    configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
+        configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
 
-    # note the option ALL which allows to build the docs together with the application
-    add_custom_target(${TARGET_NAME} ALL
-    COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
-    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    COMMENT "Generating API documentation with Doxygen"
-    )
-endif(Doxygen_FOUND)
+        # note the option ALL which allows to build the docs together with the application
+        add_custom_target(${TARGET_NAME} ALL
+        COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        COMMENT "Generating API documentation with Doxygen"
+        )
+    endif(Doxygen_FOUND)
+endif(enable_documentation)
