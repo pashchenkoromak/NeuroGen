@@ -1,8 +1,10 @@
 cmake_minimum_required(VERSION 2.8.12)
 
 add_library(NeuroWeb include/NeuroWeb/Neuron.hpp include/NeuroWeb/NeuroWeb.hpp src/NeuroWeb/Neuron.cpp src/NeuroWeb/NeuroWeb.cpp)
-add_library(Genetic include/Genetic/Evolve.hpp src/Genetic/Evolve.cpp)
-
+target_include_directories(NeuroWeb PUBLIC include)
+add_library(Genetic include/Genetic/Evolution.hpp src/Genetic/Evolution.cpp)
+target_link_libraries(Genetic NeuroWeb)
+target_include_directories(Genetic PUBLIC include)
 project(NeuroGen)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -10,3 +12,4 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 add_executable(${PROJECT_NAME} "main.cpp")
 
 target_link_libraries(${PROJECT_NAME} NeuroWeb Genetic)
+target_include_directories(${PROJECT_NAME} PUBLIC include)
