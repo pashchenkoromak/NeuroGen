@@ -45,7 +45,11 @@ private:
    enum Mutations
    {
       AddNeuron,
+      AddNeuronToEachLayer,
+      AddLayer,
       DeleteNeuron,
+      DeleteLayer,
+      DeleteNeuronFromEachLayer,
       IncreaseSynapse,
       DecreaseSynapse,
    };

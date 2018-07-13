@@ -1,4 +1,15 @@
 #include <fstream>
+#include <memory>
+#include <vector>
+
+class Neuron;
+
+struct Synapse
+{
+   double weight;
+   std::shared_ptr<Neuron> target;
+   static const double defaultWeight = 1.0;
+};
 
 /// @class Neuron
 /// @brief Is a basic unit of neuron web, it can receive sygnals and
@@ -12,6 +23,10 @@ public:
    ~Neuron() = default;
    /// @}
 
+   /// @brief Add connection from this Neuron to specified
+   /// @param[in] neighbor - specified Neuron to create connection
+   void addNeuron(std::shared_ptr<Neuron> neighbor) noexcept;
+
    /// @brief Increase signal to neuron
    /// @param[in] _signal - value of incoming signal
    void addSignal(const double _signal) noexcept;
@@ -19,6 +34,9 @@ public:
    /// @brief Get value that must be sended to other neurons
    /// @return double as a result
    double getResult() const noexcept;
+
+   /// @brief Send signals to all neighbors
+   void activate() noexcept;
 
    /// @brief Set signal to zero
    void nullify() noexcept;
@@ -36,4 +54,7 @@ private:
 
    /// @brief Sum of received signals
    double m_signal;
+
+   /// @brief connected neurons
+   std::vector<Synapse> neighbors;
 };
