@@ -1,4 +1,4 @@
-#include "Neuron.hpp"
+#include "NeuroWeb/Neuron.hpp"
 #include <vector>
 
 /// @class Layer
@@ -21,8 +21,8 @@ public:
 
    /// @brief Operators for input and output
    /// @{
-   friend std::ostream &operator<<(std::ostream &os, const NeuroWeb &neuroWeb);
-   friend std::istream &operator>>(std::istream &is, NeuroWeb &neuroWeb);
+   friend std::ostream &operator<<(std::ostream &os, const Layer &neuroWeb);
+   friend std::istream &operator>>(std::istream &is, Layer &neuroWeb);
    /// @}
 private:
    /// @brief neurons array

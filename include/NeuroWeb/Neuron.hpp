@@ -8,7 +8,7 @@ struct Synapse
 {
    double weight;
    std::shared_ptr<Neuron> target;
-   static const double defaultWeight = 1.0;
+   static constexpr double defaultWeight = 1.0;
 };
 
 /// @class Neuron
