@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Neuron.hpp"
 #include <fstream>
 #include <memory>

@@ -1,3 +1,5 @@
+#pragma once
+
 #include <fstream>
 #include <memory>
 #include <vector>
@@ -23,9 +25,14 @@ public:
    ~Neuron() = default;
    /// @}
 
-   /// @brief Add connection from this Neuron to specified
-   /// @param[in] neighbor - specified Neuron to create connection
-   void addNeuron(std::shared_ptr<Neuron> neighbor) noexcept;
+   /// @brief Creates new Neuron, connected to given neurons Layer
+   /// @param[in] connectTo - reference to vector of neurons
+   /// @return New neuron
+   static Neuron createNewNeuron(const std::vector<std::shared_ptr<Neuron>> &connectTo);
+
+   /// @brief Add synapse from this Neuron to specified
+   /// @param[in] neighbor - specified Neuron to create synapse
+   void addSynapse(std::shared_ptr<Neuron> neighbor) noexcept;
 
    /// @brief Increase signal to neuron
    /// @param[in] _signal - value of incoming signal
@@ -56,5 +63,5 @@ private:
    double m_signal;
 
    /// @brief connected neurons
-   std::vector<Synapse> neighbors;
+   std::vector<Synapse> m_neighbors;
 };

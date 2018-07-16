@@ -1,9 +1,16 @@
 #include "NeuroWeb/Neuron.hpp"
 #include <math.h>
 
-void Neuron::addNeuron(std::shared_ptr<Neuron> neighbor) noexcept
+Neuron Neuron::createNewNeuron(const std::vector<std::shared_ptr<Neuron>> &connectTo)
 {
-   neighbors.push_back({Synapse::defaultWeight, neighbor});
+   Neuron newNeuron;
+   for (auto neighbor : connectTo)
+      newNeuron.addSynapse(neighbor);
+}
+
+void Neuron::addSynapse(std::shared_ptr<Neuron> neighbor) noexcept
+{
+   m_neighbors.push_back({Synapse::defaultWeight, neighbor});
 }
 
 void Neuron::addSignal(const double _signal) noexcept
@@ -19,7 +26,7 @@ double Neuron::getResult() const noexcept
 void Neuron::activate() noexcept
 {
    const double signal = activation();
-   for (auto nb : neighbors)
+   for (auto nb : m_neighbors)
    {
       nb.target->addSignal(signal * nb.weight);
    }
@@ -28,7 +35,7 @@ void Neuron::activate() noexcept
 void Neuron::nullify() noexcept
 {
    m_signal = 0;
-   neighbors.clear();
+   m_neighbors.clear();
 }
 
 double Neuron::activation() const noexcept
