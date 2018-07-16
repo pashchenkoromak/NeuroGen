@@ -16,6 +16,19 @@ public:
    ~Layer() = default;
    /// @}
 
+   /// @brief operator ==
+   /// @note It works for O(N) time, where N - size of layer.
+   /// @note It doesn`t deep check. Only equality of memory places for each neuron.
+   /// @param[in] other - Layer for checking equality.
+   /// @return true, if Layers are the same.
+   bool operator==(const Layer &other) const;
+
+   /// @brief See operator == explanation.
+   bool operator!=(const Layer &other) const;
+
+   /// @brief Create new Layer at the end
+   static Layer createLayer(Layer &previousLayer = EMPTY_LAYER, const Layer &nextLayer = EMPTY_LAYER);
+
    /// @brief activate layer
    void activate();
 
@@ -31,4 +44,7 @@ public:
 private:
    /// @brief neurons array
    std::vector<std::shared_ptr<Neuron>> m_neurons;
+
+   /// @brief const empty layer
+   static constexpr Layer EMPTY_LAYER = Layer();
 };
