@@ -1,13 +1,6 @@
 #include "NeuroWeb/Neuron.hpp"
 #include <math.h>
 
-Neuron Neuron::createNewNeuron(const std::vector<std::shared_ptr<Neuron>> &connectTo)
-{
-   Neuron newNeuron;
-   for (auto neighbor : connectTo)
-      newNeuron.addSynapse(neighbor);
-}
-
 void Neuron::addSynapse(std::shared_ptr<Neuron> neighbor) noexcept
 {
    m_neighbors.push_back({Synapse::defaultWeight, neighbor});

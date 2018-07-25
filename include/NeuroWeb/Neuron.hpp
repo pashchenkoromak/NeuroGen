@@ -25,11 +25,6 @@ public:
    ~Neuron() = default;
    /// @}
 
-   /// @brief Creates new Neuron, connected to given neurons Layer
-   /// @param[in] connectTo - reference to vector of neurons
-   /// @return New neuron
-   static Neuron createNewNeuron(const std::vector<std::shared_ptr<Neuron>> &connectTo);
-
    /// @brief Add synapse from this Neuron to specified
    /// @param[in] neighbor - specified Neuron to create synapse
    void addSynapse(std::shared_ptr<Neuron> neighbor) noexcept;
