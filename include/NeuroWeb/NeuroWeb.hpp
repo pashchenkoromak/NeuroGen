@@ -73,11 +73,6 @@ class NeuroWeb {
   /// @brief Child have some mutation probability
   constexpr static double mutationProbability = 0.1;
 
-  /// @brief Sends signal by neuron with number = id to all neurons connected
-  /// him.
-  /// @param[in] id - neuron-sender number.
-  void sendSygnal(const int id) noexcept;
-
   /// @brief Vector of neurons.
   std::vector<Layer> m_layers;
 };
