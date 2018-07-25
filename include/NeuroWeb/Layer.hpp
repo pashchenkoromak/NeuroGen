@@ -33,24 +33,32 @@ class Layer {
   void activate();
 
   /// @brief get Neurons count in layer.
-  size_t getSize() const;
+  size_t size() const;
 
   /// @brief get each neuron activation result
   /// @return vector of doubles - activation values
   std::vector<double> getResults();
+
+  /// @brief set input sygnal
+  /// @note if inputSygnal.size is bigger, then Neurons count - extra
+  /// sygnals will be ignored.
+  /// If inputSygnal.size is less, then Neurons count in  - sygnals
+  /// to extra Neurons will be 0.
+  void setInputSygnal(const std::vector<double> &inputSygnal) noexcept;
 
   /// @brief Operators for input and output
   /// @{
   friend std::ostream &operator<<(std::ostream &os, const Layer &layer);
   friend std::istream &operator>>(std::istream &is, Layer &layer);
   /// @}
+
+  /// @brief const empty layer
+  static const Layer EMPTY_LAYER = Layer();
+
  private:
   /// @brief neurons array
   std::vector<std::shared_ptr<Neuron>> m_neurons;
 
   /// @brief new Layer size
   size_t m_newLayerSize = 9;
-
-  /// @brief const empty layer
-  // static constexpr Layer EMPTY_LAYER = Layer();
 };

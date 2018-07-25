@@ -30,11 +30,15 @@ class NeuroWeb {
   /// in first layer - extra sygnals will be ignored.
   /// If inputSygnal.size is less, then count of Neurons in first
   /// layer - sygnals to extra Neurons will be 0.
-  void setFirstLayer(const std::vector<double> &inputSygnal);
+  void setInputSygnal(const std::vector<double> &inputSygnal) noexcept;
+
+  /// @brief return last layer
+  /// @note if there is no layers - will be empty layer.
+  /// @return last layer
+  Layer getFinishLayer() const noexcept;
 
   /// @brief run neuron web.
-  /// @return finish Layer.
-  Layer run() noexcept;
+  void run() noexcept;
 
   /// @brief Creates a copy of this web with some small change.
   /// @return Mutant NeuroWeb
@@ -43,7 +47,7 @@ class NeuroWeb {
   /// @brief Creates a child of two webs, it contain some parts
   /// of both parents.
   /// @return Child NeuroWeb.
-  NeuroWeb generate(const NeuroWeb &otherParent);
+  NeuroWeb generateChild(const NeuroWeb &otherParent);
 
   /// @brief Operators for input and output
   /// @{
@@ -66,7 +70,7 @@ class NeuroWeb {
   };
 
   /// @brief Child have some mutation probability
-  const static double mutationProbability = 0.1;
+  constexpr static double mutationProbability = 0.1;
 
   /// @brief Sends signal by neuron with number = id to all neurons connected
   /// him.

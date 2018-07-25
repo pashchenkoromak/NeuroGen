@@ -28,7 +28,7 @@ void Layer::activate() {
   }
 }
 
-size_t Layer::getSize() const { return m_neurons.size(); }
+size_t Layer::size() const { return m_neurons.size(); }
 
 std::vector<double> Layer::getResults() {
   std::vector<double> res;
@@ -37,3 +37,12 @@ std::vector<double> Layer::getResults() {
   for (size_t i = 0; i < N; i++) res[i] = m_neurons[i]->getResult();
   return res;
 }
+
+void Layer::setInputSygnal(const std::vector<double> &inputSygnal) noexcept {
+  const size_t N = std::min(inputSygnal.size(), m_neurons.size());
+  for (size_t i = 0; i < N; i++) m_neurons[i]->addSignal(inputSygnal[i]);
+}
+
+std::ostream &operator<<(std::ostream &os, const Layer &layer) {}
+
+std::istream &operator>>(std::istream &is, Layer &layer) {}
