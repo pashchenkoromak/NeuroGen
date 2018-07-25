@@ -6,57 +6,61 @@
 
 class Neuron;
 
-struct Synapse
-{
-   double weight;
-   std::shared_ptr<Neuron> target;
-   static constexpr double defaultWeight = 1.0;
+struct Synapse {
+  double weight;
+  std::shared_ptr<Neuron> target;
+  static constexpr double defaultWeight = 1.0;
 };
 
 /// @class Neuron
 /// @brief Is a basic unit of neuron web, it can receive sygnals and
 /// calculate new signal.
-class Neuron
-{
-public:
-   /// @brief Default constructor and destructor
-   /// @{
-   Neuron() = default;
-   ~Neuron() = default;
-   /// @}
+class Neuron {
+ public:
+  /// @brief Default constructor and destructor
+  /// @{
+  Neuron() = default;
+  ~Neuron() = default;
+  /// @}
 
-   /// @brief Add synapse from this Neuron to specified
-   /// @param[in] neighbor - specified Neuron to create synapse
-   void addSynapse(std::shared_ptr<Neuron> neighbor) noexcept;
+  /// @brief deleted functions due to having unique id
+  /// @{
+  Neuron(const Neuron &) = delete;
+  Neuron &operator=(const Neuron &) = delete;
+  /// @}
 
-   /// @brief Increase signal to neuron
-   /// @param[in] _signal - value of incoming signal
-   void addSignal(const double _signal) noexcept;
+  /// @brief Add synapse from this Neuron to specified
+  /// @param[in] neighbor - specified Neuron to create synapse
+  void addSynapse(std::shared_ptr<Neuron> neighbor) noexcept;
 
-   /// @brief Get value that must be sended to other neurons
-   /// @return double as a result
-   double getResult() const noexcept;
+  /// @brief Increase signal to neuron
+  /// @param[in] _signal - value of incoming signal
+  void addSignal(const double _signal) noexcept;
 
-   /// @brief Send signals to all neighbors
-   void activate() noexcept;
+  /// @brief Get value that must be sended to other neurons
+  /// @return double as a result
+  double getResult() const noexcept;
 
-   /// @brief Set signal to zero
-   void nullify() noexcept;
+  /// @brief Send signals to all neighbors
+  void activate() noexcept;
 
-   /// @brief Operators for input and output
-   /// @{
-   friend std::ostream &operator<<(std::ostream &os, const Neuron &neuroWeb);
-   friend std::istream &operator>>(std::istream &is, Neuron &neuroWeb);
-   /// @}
+  /// @brief Set signal to zero
+  void nullify() noexcept;
 
-private:
-   /// @brief Normalize sygnal
-   /// @return Value [0, 1].
-   double activation() const noexcept;
+  /// @brief Operators for input and output
+  /// @{
+  friend std::ostream &operator<<(std::ostream &os, const Neuron &neuron);
+  friend std::istream &operator>>(std::istream &is, Neuron &neuron);
+  /// @}
 
-   /// @brief Sum of received signals
-   double m_signal;
+ private:
+  /// @brief Normalize sygnal
+  /// @return Value [0, 1].
+  double activation() const noexcept;
 
-   /// @brief connected neurons
-   std::vector<Synapse> m_neighbors;
+  /// @brief Sum of received signals
+  double m_signal;
+
+  /// @brief connected neurons
+  std::vector<Synapse> m_neighbors;
 };

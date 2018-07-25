@@ -50,6 +50,7 @@ class NeuroWeb {
   NeuroWeb generateChild(const NeuroWeb &otherParent);
 
   /// @brief Operators for input and output
+  /// @note it`s in a LISP style
   /// @{
   friend std::ostream &operator<<(std::ostream &os, const NeuroWeb &neuroWeb);
   friend std::istream &operator>>(std::istream &is, NeuroWeb &neuroWeb);

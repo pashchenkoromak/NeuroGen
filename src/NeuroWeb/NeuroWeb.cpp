@@ -22,3 +22,7 @@ void NeuroWeb::run() noexcept {
     layer.activate();
   }
 }
+
+std::ostream &operator<<(std::ostream &os, const NeuroWeb &neuroWeb) {}
+
+std::istream &operator>>(std::istream &is, NeuroWeb &neuroWeb) {}
