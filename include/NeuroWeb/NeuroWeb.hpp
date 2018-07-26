@@ -60,14 +60,14 @@ class NeuroWeb {
   /// @enum Mutations
   /// @brief List of possible mutations
   enum Mutations {
-    AddNeuron,
-    AddNeuronToEachLayer,
+    AddNeuronToLayer,
     AddLayer,
-    DeleteNeuron,
+    DeleteNeuronFromLayer,
     DeleteLayer,
-    DeleteNeuronFromEachLayer,
     IncreaseSynapse,
     DecreaseSynapse,
+    IncreaseDefaultLayerSize,
+    DecreaseDefaultLayerSize
   };
 
   /// @brief Child have some mutation probability
